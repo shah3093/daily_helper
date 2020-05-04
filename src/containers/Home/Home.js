@@ -22,11 +22,11 @@ const Home = (props) => {
                 {/* <Download_img /> */}
 
                 <Card.Group centered>
-                    <ActionCard header="Download" subheader="Website images" btntitle="GO" />
-                    <ActionCard header="CSV to Array" subheader="Convert" btntitle="GO" />
-                    <ActionCard header="Json to Array" subheader="Convert" btntitle="GO" />
-                    <ActionCard header="CSV to Json" subheader="Convert" btntitle="GO" />
-                    <ActionCard header="Json to CSV" subheader="Convert" btntitle="GO" />
+                    <ActionCard links="/download-img" header="Download" subheader="Website images" btntitle="GO" />
+                    <ActionCard links="/download-img" header="CSV to Array" subheader="Convert" btntitle="GO" />
+                    <ActionCard links="/download-img" header="Json to Array" subheader="Convert" btntitle="GO" />
+                    <ActionCard links="/download-img" header="CSV to Json" subheader="Convert" btntitle="GO" />
+                    <ActionCard links="/download-img" header="Json to CSV" subheader="Convert" btntitle="GO" />
                 </Card.Group>
 
 

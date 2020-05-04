@@ -20,8 +20,8 @@ const App = () => {
   let routes = (
     <Switch>
 
-      {/* <Route path="/" exact component={Home} /> */}
-      <Route path="/" exact component={DownloadImg} />
+      <Route path="/" exact component={Home} />
+      <Route path="/download-img" component={DownloadImg} />
       <Redirect to="/" />
 
     </Switch>

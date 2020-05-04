@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Header, Grid, Button, Card, Segment } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 
 const ActionCard = (props) => {
@@ -33,7 +34,7 @@ const ActionCard = (props) => {
 
                         </Grid.Row>
                         <Grid.Row style={{ display: 'block' }}>
-                            <Button size='large' fluid color='orange' inverted>
+                            <Button as={Link} to={props.links} size='large' fluid color='orange' inverted>
                                 {props.btntitle}
                             </Button>
                         </Grid.Row>
