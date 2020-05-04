@@ -1,0 +1,11 @@
+.Square{
+    width: 175 !important;
+    height: 175 !important; 
+    display: 'flex' !important;
+    align-items: 'center' !important;
+    justify-content: 'center' !important;
+}
+
+.CenterBtn{
+    display: 'block' !important;
+}
