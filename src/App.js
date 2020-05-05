@@ -14,13 +14,18 @@ const DownloadImg = React.lazy(() => {
   return import('./containers/DownloadImg/DownloadImg');
 });
 
+const JsonToArray = React.lazy(() => {
+  return import('./containers/JsonToArray/JsonToArray');
+});
+
 const App = () => {
 
 
   let routes = (
     <Switch>
 
-      <Route path="/" exact component={Home} />
+      {/* <Route path="/" exact component={Home} /> */}
+      <Route path="/" exact component={JsonToArray} />
       <Route path="/download-img" component={DownloadImg} />
       <Redirect to="/" />
 

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
-import { Header, Icon, Divider, Segment, Button, Input, Grid, Dimmer, Loader, Image } from 'semantic-ui-react';
+import { Header, Icon, Divider, Segment, Button, Input, Grid, Loader } from 'semantic-ui-react';
 
+import * as constants from '../../constants/constants';
 import THeader from '../../components/Header/THeader';
 
 const DownloadImg = () => {
@@ -9,6 +10,7 @@ const DownloadImg = () => {
     const [urlValue, setUrlValue] = useState(null);
     const [inputStatus, setInputStatus] = useState(false);
     const [activeLoader, setActiveLoader] = useState(false);
+    const [resultDiv, setResultDiv] = useState(false);
 
 
     const custom_style = {
@@ -20,6 +22,7 @@ const DownloadImg = () => {
 
         var re = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
 
+        setResultDiv(null);
 
         if (urlValue) {
             if (urlValue.includes("http://localhost:3000/")) {
@@ -41,9 +44,62 @@ const DownloadImg = () => {
             console.log(urlValue);
             setInputStatus(false);
             setActiveLoader(true);
+
+            let url = constants.BACKEND_BASE_URL + constants.DOWNLOAD_WEBSITE_IMG_URL + "url=" + urlValue;
+
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json'
+                },
+            }).then(response => response.json())
+                .then(responseData => {
+                    console.log(responseData);
+                    generateResultDiv(responseData);
+                    setActiveLoader(false);
+                    // dispatch(showing(responseData.data));
+                }).catch((err) => {
+                    // dispatch(showingError(err.message));
+                    console.log(err);
+                    setInputStatus(true);
+                });
         }
 
 
+    }
+
+    const generateResultDiv = (responseData) => {
+        let div = (
+            <Segment size="massive" textAlign='center'>
+
+                <Grid columns='three' divided>
+                    <Grid.Row>
+                        <Grid.Column>
+                            <Header as='h2'>Images</Header>
+                        </Grid.Column>
+                        <Grid.Column>
+                            <Button as="a" href={responseData.data.file_path} inverted color='orange' content='Download' icon='download' labelPosition='right' />
+                        </Grid.Column>
+                        <Grid.Column>
+
+                            <Grid columns='2' divided>
+                                <Grid.Row>
+                                    <Grid.Column>
+                                        <p>{responseData.data.file_size}</p>
+                                    </Grid.Column>
+                                    <Grid.Column>
+                                        <p>{responseData.data.total_img} images</p>
+                                    </Grid.Column>
+                                </Grid.Row>
+                            </Grid>
+
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
+            </Segment>
+        );
+
+        setResultDiv(div);
     }
 
 
@@ -78,35 +134,7 @@ const DownloadImg = () => {
 
                             <Loader style={{ marginTop: '1rem' }} active={activeLoader} inline='centered' />
 
-                            <Segment size="massive" textAlign='center'>
-
-                                <Grid columns='three' divided>
-                                    <Grid.Row>
-                                        <Grid.Column>
-                                            <Header as='h2'>Images</Header>
-                                        </Grid.Column>
-                                        <Grid.Column>
-                                            <Button inverted color='orange' content='Download' icon='download' labelPosition='right' />
-                                        </Grid.Column>
-                                        <Grid.Column>
-
-                                            <Grid columns='2' divided>
-                                                <Grid.Row>
-                                                    <Grid.Column>
-                                                        <p>700 MB</p>
-                                                    </Grid.Column>
-                                                    <Grid.Column>
-                                                        <p>15 images</p>
-                                                    </Grid.Column>
-                                                </Grid.Row>
-                                            </Grid>
-
-                                        </Grid.Column>
-                                    </Grid.Row>
-                                </Grid>
-
-
-                            </Segment>
+                            {resultDiv}
 
                         </Grid.Column>
                     </Grid.Row>
