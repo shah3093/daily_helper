@@ -20,7 +20,7 @@ trait ApiExceptionTrait
                 break;
         }
 
-        header("HTTP/1.0 ".$status_code." Not Found");
+        header("HTTP/1.0 ".$status_code);
         echo json_encode($response);
     }
 }

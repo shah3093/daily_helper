@@ -13,7 +13,7 @@ trait ApiResponseTrait
             'data' => $data
         ];
 
-        header("HTTP/1.0 200 OK");
+        header("HTTP/1.0 200");
         echo json_encode($response);
     }
 }

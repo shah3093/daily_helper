@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 use Traits\ApiExceptionTrait;
 use Rakit\Validation\Validator;
 use Symfony\Component\DomCrawler\Crawler;
+use Utilities\Common;
 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -108,12 +109,7 @@ class Main
         }
     }
 
-    function convert_to_mb($size)
-    {
-        $mb_size = $size / 1048576;
-        $format_size = number_format($mb_size, 2) . ' MB';
-        return $format_size;
-    }
+   
 
     public function process($query)
     {
@@ -129,7 +125,8 @@ class Main
             $data = [
                 'file_path' => $path,
                 'total_img' => $img_file,
-                'file_size' => $this->convert_to_mb($file_size)
+                // 'file_size' => $this->convert_to_mb($file_size)
+                'file_size' => Common::convert_to_mb($file_size)
             ];
 
             $message = "Desire website images in Zip formate";
