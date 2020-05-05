@@ -1,0 +1,22 @@
+{
+    "name": "muham/daily_helper",
+    "authors": [
+        {
+            "name": "Shah Muhammad Imran",
+            "email": "imran93cse11@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.5",
+        "symfony/dom-crawler": "^5.0",
+        "symfony/console": "^5.0",
+        "symfony/css-selector": "^5.0",
+        "rakit/validation": "^1.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Traits\\": "Traits/",
+            "Constants\\": "Constants/"
+        }
+    }
+}
