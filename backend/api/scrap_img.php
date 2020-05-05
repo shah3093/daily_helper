@@ -77,9 +77,13 @@ class Main
 
             $zip = new ZipArchive;
             $res = $zip->open($path . '.zip', ZipArchive::CREATE);
+
+            $img_file = 0;
+
             if ($res === TRUE) {
                 foreach (glob($path . "/*") as $file) {
                     $zip->addFile($file, basename($file));
+                    $img_file++;
                 }
             } else {
                 // exit("cannot open myzip.zip \n");
@@ -90,7 +94,11 @@ class Main
             array_map('unlink', glob($path . "/*"));
             rmdir($path);
 
-            return $path . '.zip';
+            $file_size = filesize($path . '.zip');
+
+
+
+            return [$path . '.zip',$img_file,$file_size];
         } catch (Exception $ex) {
 
             // print_r($ex->getMessage());
@@ -100,20 +108,30 @@ class Main
         }
     }
 
+    function convert_to_mb($size)
+    {
+        $mb_size = $size / 1048576;
+        $format_size = number_format($mb_size, 2) . ' MB';
+        return $format_size;
+    }
+
     public function process($query)
     {
         $url = str_replace("url=", "", $query);
         $validation_status = $this->validate($url);
 
         if ($validation_status === true) {
-            $path = $this->scrap_images($url);
+            list($path,$img_file,$file_size) = $this->scrap_images($url);
 
             $path = str_replace("..", "", $path);
             $path = Constants::SITE_URL . $path;
 
             $data = [
-                'file_path' => $path
+                'file_path' => $path,
+                'total_img' => $img_file,
+                'file_size' => $this->convert_to_mb($file_size)
             ];
+
             $message = "Desire website images in Zip formate";
 
             $this->successResponse($message, $data);
