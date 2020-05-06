@@ -24,8 +24,8 @@ const App = () => {
   let routes = (
     <Switch>
 
-      {/* <Route path="/" exact component={Home} /> */}
-      <Route path="/" exact component={JsonToArray} />
+      <Route path="/" exact component={Home} />
+      <Route path="/json-to-array" component={JsonToArray} />
       <Route path="/download-img" component={DownloadImg} />
       <Redirect to="/" />
 

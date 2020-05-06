@@ -54,7 +54,7 @@ const DownloadImg = () => {
                 },
             }).then(response => response.json())
                 .then(responseData => {
-                    console.log(responseData);
+                    // console.log(responseData);
                     generateResultDiv(responseData);
                     setActiveLoader(false);
                     // dispatch(showing(responseData.data));

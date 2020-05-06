@@ -6,7 +6,7 @@ const JsonToArray = () => {
     return (
         <React.Fragment>
 
-            <Converter />
+            <Converter file_type="csv" page_title="Convert Json to CSV" />
             
         </React.Fragment>
     )

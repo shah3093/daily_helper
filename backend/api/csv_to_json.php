@@ -25,7 +25,7 @@ class Main
         $validator = new Validator;
 
         $validation = $validator->make($data, [
-            'file' => 'required|mimes:csv|uploaded_file'
+            'file' => 'required|mimes:csv,xls|uploaded_file'
         ]);
 
         $validation->validate();
@@ -114,7 +114,6 @@ class Main
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     $mainObj = new Main();
     $mainObj->process($_FILES);
 }
