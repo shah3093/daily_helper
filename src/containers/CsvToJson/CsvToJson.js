@@ -2,14 +2,14 @@ import React from 'react';
 
 import Converter from '../../components/Converter/Converter';
 
-const JsonToArray = () => {
+const CsvToJson = () => {
     return (
         <React.Fragment>
 
-            <Converter file_type="csv" page_title="Convert Json to CSV" />
+            <Converter file_type="csv" page_title="Convert CSV to Json" />
             
         </React.Fragment>
     )
 }
 
-export default JsonToArray;
+export default CsvToJson;

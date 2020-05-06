@@ -14,8 +14,8 @@ const DownloadImg = React.lazy(() => {
   return import('./containers/DownloadImg/DownloadImg');
 });
 
-const JsonToArray = React.lazy(() => {
-  return import('./containers/JsonToArray/JsonToArray');
+const CsvToJson = React.lazy(() => {
+  return import('./containers/CsvToJson/CsvToJson');
 });
 
 const App = () => {
@@ -25,7 +25,7 @@ const App = () => {
     <Switch>
 
       <Route path="/" exact component={Home} />
-      <Route path="/json-to-array" component={JsonToArray} />
+      <Route path="/csv-to-json" component={CsvToJson} />
       <Route path="/download-img" component={DownloadImg} />
       <Redirect to="/" />
 
