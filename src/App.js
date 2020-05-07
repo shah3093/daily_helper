@@ -18,6 +18,10 @@ const CsvToJson = React.lazy(() => {
   return import('./containers/CsvToJson/CsvToJson');
 });
 
+const JsonToCsv = React.lazy(() => {
+  return import('./containers/JsonToCsv/JsonToCsv');
+});
+
 const App = () => {
 
 
@@ -26,6 +30,7 @@ const App = () => {
 
       <Route path="/" exact component={Home} />
       <Route path="/csv-to-json" component={CsvToJson} />
+      <Route path="/json-to-csv" component={JsonToCsv} />
       <Route path="/download-img" component={DownloadImg} />
       <Redirect to="/" />
 

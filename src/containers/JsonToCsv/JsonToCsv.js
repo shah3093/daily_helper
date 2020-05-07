@@ -1,16 +1,14 @@
 import React from 'react';
-
 import Converter from '../../components/Converter/Converter';
 import * as constants from '../../constants/constants';
 
-const CsvToJson = () => {
+const JsonToCsv = () => {
     return (
         <React.Fragment>
-
-            <Converter link_url={constants.CSV_TO_JSON_URL} file_type="csv" page_title="Convert CSV to Json" />
-            
+            <Converter link_url={constants.JSON_TO_CSV_URL} file_type="json" page_title="Convert Json to CSV" />
         </React.Fragment>
     )
 }
 
-export default CsvToJson;
+
+export default JsonToCsv

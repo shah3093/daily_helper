@@ -21,6 +21,12 @@ const Converter = (props) => {
 
     const exchangeFile = () => {
 
+        setResultDiv(null);
+        if(!fileData){
+            generateErrorDiv("Please upload file");
+            return;
+        }
+
         const file_type = fileData.name.split('.').pop();
         // const file_type = "";
 
@@ -30,7 +36,7 @@ const Converter = (props) => {
 
             setActiveLoader(true);
 
-            let url = constants.BACKEND_BASE_URL + constants.CSV_TO_JSON_URL;
+            let url = constants.BACKEND_BASE_URL + props.link_url;
 
             var data = new FormData();
             data.append('file', fileData);
@@ -147,7 +153,7 @@ const Converter = (props) => {
                             <Divider clearing />
 
                             <Button color='orange' icon size='massive' onClick={exchangeFile}>
-                                <Icon name='exchange' />
+                                <Icon name='sync alternate' />
                             </Button>
 
                             <br />
